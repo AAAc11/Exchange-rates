@@ -18,6 +18,8 @@ def data_transformation():
             df["date"] = today_date
             df["date"] = pd.to_datetime(df["date"])
 
+            print("Data transformed")
+
             return df
 
     except Exception as e:
