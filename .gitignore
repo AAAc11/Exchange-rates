@@ -1,2 +1,12 @@
 venv/
+env/
+.venv/
 .env
+__pycache__/
+*.db
+*.sqlite
+*.sqlite3
+raw_data/
+*.json
+*.csv
+.vscode/
