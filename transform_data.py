@@ -18,6 +18,12 @@ def data_transformation():
             df["date"] = today_date
             df["date"] = pd.to_datetime(df["date"])
 
+            df = df.rename(columns={
+                "currency": "currency_name",
+                "code": "currency_code",
+                "mid": "currency_rate"
+            })
+
             print("Data transformed")
 
             return df
