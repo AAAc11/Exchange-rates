@@ -1,5 +1,5 @@
-# NBP Exchange Rates ETL Pipeline (V 1.0)
-Automated ETL pipeline extracting daily exchange rates from the NBP API. After data cleansing and transformation, records are loaded into a local database.
+# NBP Exchange Rates ETL Pipeline (V 2.0 - ongoing)
+Automated ETL pipeline extracting daily exchange rates from the NBP API. After data cleansing and transformation, records are loaded into containerized PostgreSQL database.
 
 ## Architecture (ETL Process)
 Project has modules, which are responsible for different stages.
@@ -8,14 +8,17 @@ Project has modules, which are responsible for different stages.
 
 - Transform: Parsing data with *Pandas* to DataFrame and handling Null columns, changing to correct data type
 
-- Load: Clean data is loaded into local *SQLite* database using *SQLAlchemy*
+- Load: Clean data is loaded into a *PostgreSQL* database running in a *Docker* container using *SQLAlchemy*
+
+- Infrastructure: The whole application is managed by *Docker Compose* and database changes are controlled by *Alembic*
 
 ## Technologies Used
 
 - Python 3.12
 - Pandas
-- SQLAlchemy
-- SQLite
+- SQLAlchemy & Alembic
+- PostgreSQL
+- Docker & Docker Compose
 - Git
 
 ## Project Structure
@@ -28,35 +31,43 @@ Project has modules, which are responsible for different stages.
 
 - export_to_sql.py - exports data into database
 
+- models.py - defines database columns
+
+- Dockerfile - containerization instructions
+
+- docker-compose.yml - defines the environment
+
 ## How to Run Locally
 
-1. Clone the repository.
+1. Clone the repository:
    ```
    git clone https://github.com/AAAc11/Exchange-rates.git
    ```
   
 
-2. Create and activate a virtual environment.
+2. Set up the environment variable:
+   Create `.env` file:
    ```
-   python -m venv venv
-   venv/Scripts/activate
+   POSTGRES_USER=your_user
+   POSTGRES_PASSWORD=your_password
+   POSTGRES_DB=exchange_rates
    ```
     
-3. Install required packages.
+4. Start the database:
    ```
-   pip install pandas sqlalchemy requests
+   docker compose up db -d
    ```
 
-4. Run python main.py in your terminal.
+5. Run the ETL pipeline:
    ```
-   python main.py
+   docker compose up etl --build
    ```
 
 ## Roadmap (V 2.0)
 
-Migration from local SQLite to a Cloud/Dockerized PostgreSQL database.
+~~Migration from local SQLite to a Cloud/Dockerized PostgreSQL database.~~
 
-Containerization of the application using Docker.
+~~Containerization of the application using Docker.~~
 
 Orchestration and scheduling using Apache Airflow or Prefect.
 
