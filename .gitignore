@@ -10,3 +10,6 @@ raw_data/
 *.json
 *.csv
 .vscode/
+alembic.ini
+.DS_Store
+Thumbs.db
