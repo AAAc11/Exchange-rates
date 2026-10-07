@@ -1,5 +1,5 @@
 # NBP Exchange Rates ETL Pipeline (V 2.0 - ongoing)
-Automated ETL pipeline extracting daily exchange rates from the NBP API. After data cleansing and transformation, records are loaded into containerized PostgreSQL database.
+Automated ETL pipeline extracting daily exchange rates from the NBP API. After data cleansing and transformation, records are loaded into containerized PostgreSQL database. The entire process is scheduled and orchestrated using Apache Airflow.
 
 ## Architecture (ETL Process)
 Project has modules, which are responsible for different stages.
@@ -12,6 +12,8 @@ Project has modules, which are responsible for different stages.
 
 - Infrastructure: The whole application is managed by *Docker Compose* and database changes are controlled by *Alembic*
 
+- Orchestration: *Apache Airflow* manages the scheduling and execution of the pipeline
+
 ## Technologies Used
 
 - Python 3.12
@@ -19,6 +21,7 @@ Project has modules, which are responsible for different stages.
 - SQLAlchemy & Alembic
 - PostgreSQL
 - Docker & Docker Compose
+- Apache Airflow
 - Git
 
 ## Project Structure
@@ -36,6 +39,8 @@ Project has modules, which are responsible for different stages.
 - Dockerfile - containerization instructions
 
 - docker-compose.yml - defines the environment
+
+- dags/ - directory containing Apache Airflow DAGs
 
 ## How to Run Locally
 
@@ -69,6 +74,6 @@ Project has modules, which are responsible for different stages.
 
 ~~Containerization of the application using Docker.~~
 
-Orchestration and scheduling using Apache Airflow or Prefect.
+~~Orchestration and scheduling using Apache Airflow or Prefect.~~
 
 Storing raw extracted data in a Cloud Data Lake (e.g., AWS S3).
