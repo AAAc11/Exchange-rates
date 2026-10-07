@@ -13,3 +13,4 @@ raw_data/
 alembic.ini
 .DS_Store
 Thumbs.db
+logs/
