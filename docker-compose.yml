@@ -5,7 +5,7 @@ x-airflow-common: &airflow-common
     - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/airflow
     - AIRFLOW__CORE__LOAD_EXAMPLES=False
     - AIRFLOW__WEBSERVER__SECRET_KEY=${AIRFLOW_SECRET_KEY}
-    - _PIP_ADDITIONAL_REQUIREMENTS=pandas python-dotenv
+    - _PIP_ADDITIONAL_REQUIREMENTS=pandas python-dotenv boto3
   env_file:
     - .env
   volumes:
